@@ -1,3 +1,9 @@
+## [1.3.0](https://github.com/totto357/mini-games-patches/compare/v1.2.0...v1.3.0) (2026-10-14)
+
+### ✨ New Features
+
+* **cellsurvivor:** add complete Morphe patches for Cell Survivor ([0a2c718](https://github.com/totto357/mini-games-patches/commit/0a2c718d698b93de4baa91d65d25b4e0fe1c3acd))
+
 ## [1.2.0](https://github.com/totto357/mini-games-patches/compare/v1.1.1...v1.2.0) (2026-10-14)
 
 ### ✨ New Features

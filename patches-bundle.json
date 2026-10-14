@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-14T07:34:00",
-  "description": "## [1.2.0](https://github.com/totto357/mini-games-patches/compare/v1.1.1...v1.2.0) (2026-10-14)\n\n### ✨ New Features\n\n* **colonyflow:** add auto-restore save data from external storage on startup ([0fc73bc](https://github.com/totto357/mini-games-patches/commit/0fc73bc03aba673e3f3968368ff449e6cd83c9fb))",
-  "download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.2.0/patches-1.2.0.mpp",
-  "signature_download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.2.0/patches-1.2.0.mpp.asc",
-  "version": "1.2.0"
+  "created_at": "2026-10-14T08:17:40",
+  "description": "## [1.3.0](https://github.com/totto357/mini-games-patches/compare/v1.2.0...v1.3.0) (2026-10-14)\n\n### ✨ New Features\n\n* **cellsurvivor:** add complete Morphe patches for Cell Survivor ([0a2c718](https://github.com/totto357/mini-games-patches/commit/0a2c718d698b93de4baa91d65d25b4e0fe1c3acd))",
+  "download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.3.0/patches-1.3.0.mpp",
+  "signature_download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.3.0/patches-1.3.0.mpp.asc",
+  "version": "1.3.0"
 }
