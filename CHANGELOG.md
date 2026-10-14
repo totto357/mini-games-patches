@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/totto357/mini-games-patches/compare/v1.1.0...v1.1.1) (2026-10-14)
+
+### 🐛 Bug Fixes
+
+* **colonyflow:** fix register index out of range in billing bypass patch ([566e977](https://github.com/totto357/mini-games-patches/commit/566e9770972f6e64e8376159ee3f0be5707ef162))
+
 ## [1.1.0](https://github.com/totto357/mini-games-patches/compare/v1.0.3...v1.1.0) (2026-10-14)
 
 ### ✨ New Features

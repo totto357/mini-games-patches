@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-14T07:16:55",
-  "description": "## [1.1.0](https://github.com/totto357/mini-games-patches/compare/v1.0.3...v1.1.0) (2026-10-14)\n\n### ✨ New Features\n\n* **colonyflow:** completely disable banner and mrec view creation ([b4be7ae](https://github.com/totto357/mini-games-patches/commit/b4be7ae7f1622ea1be0a61815a6b0292f305fb10))",
-  "download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.1.0/patches-1.1.0.mpp",
-  "signature_download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.1.0/patches-1.1.0.mpp.asc",
-  "version": "1.1.0"
+  "created_at": "2026-10-14T07:24:09",
+  "description": "## [1.1.1](https://github.com/totto357/mini-games-patches/compare/v1.1.0...v1.1.1) (2026-10-14)\n\n### 🐛 Bug Fixes\n\n* **colonyflow:** fix register index out of range in billing bypass patch ([566e977](https://github.com/totto357/mini-games-patches/commit/566e9770972f6e64e8376159ee3f0be5707ef162))",
+  "download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.1.1/patches-1.1.1.mpp",
+  "signature_download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.1.1/patches-1.1.1.mpp.asc",
+  "version": "1.1.1"
 }
