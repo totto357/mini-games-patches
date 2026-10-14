@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/totto357/mini-games-patches/compare/v1.0.2...v1.0.3) (2026-10-14)
+
+### 🐛 Bug Fixes
+
+* **colonyflow:** bypass license check safely without bytecode verification error ([b3388d1](https://github.com/totto357/mini-games-patches/commit/b3388d13c6d73faab564378ff6daedb1435fd918))
+
 ## [1.0.2](https://github.com/totto357/mini-games-patches/compare/v1.0.1...v1.0.2) (2026-10-14)
 
 ### 🐛 Bug Fixes

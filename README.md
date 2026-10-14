@@ -5,7 +5,7 @@ Morphe patches for various casual / mini games on Android.
 ## Patches
 
 <!-- PATCHES_START -->
-> **[v1.0.2](https://github.com/totto357/mini-games-patches/releases/tag/v1.0.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;5 patches total
+> **[v1.0.3](https://github.com/totto357/mini-games-patches/releases/tag/v1.0.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;5 patches total
 <details open>
 <summary>📦 Colony Flow&nbsp;&nbsp;•&nbsp;&nbsp;5 patches</summary>
 <br>
@@ -17,7 +17,7 @@ Morphe patches for various casual / mini games on Android.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Bypass License Check & Pre-inject NoAds](#bypass-license-check-pre-inject-noads) | Removes pairip license check and automatically sets key_local_remove_ads in PlayerPrefs. |  |
+| [Bypass License Check](#bypass-license-check) | Removes pairip license check by returning immediately from checkLicense. |  |
 | [Disable Interstitial & App Open Ads](#disable-interstitial-app-open-ads) | Bypasses interstitial ads and app-open ads by always returning false from readiness checks. |  |
 | [Fix Native Libs & Disable Analytics](#fix-native-libs-disable-analytics) | Sets extractNativeLibs to true and adds metadata to disable Firebase/Google analytics. |  |
 | [Free In-App Purchases (IAP Bypass)](#free-in-app-purchases-iap-bypass) | Bypasses Google Play billing dialog and immediately simulates a successful purchase. |  |

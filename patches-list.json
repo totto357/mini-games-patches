@@ -1,10 +1,10 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "patches": [
     {
-      "name": "Bypass License Check & Pre-inject NoAds",
-      "description": "Removes pairip license check and automatically sets key_local_remove_ads in PlayerPrefs.",
+      "name": "Bypass License Check",
+      "description": "Removes pairip license check by returning immediately from checkLicense.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
