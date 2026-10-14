@@ -21,6 +21,9 @@ val manifestPatch =
                 // Fix native library extraction crash on modern Android
                 appElement.setAttribute("android:extractNativeLibs", "true")
 
+                // Enable debuggable for adb run-as save data backup/restore
+                appElement.setAttribute("android:debuggable", "true")
+
                 // Helper to append meta-data
                 fun addMetaData(name: String, value: String) {
                     val meta = document.createElement("meta-data")

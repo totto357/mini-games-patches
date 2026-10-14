@@ -19,11 +19,23 @@ internal object IsAppOpenAdReadyFingerprint : Fingerprint(
     returnType = "Z",
 )
 
+internal object ShowBannerFingerprint : Fingerprint(
+    definingClass = MAX_UNITY_AD_MANAGER,
+    name = "showBanner",
+    parameters = listOf("Ljava/lang/String;"),
+)
+
+internal object CreateAdViewFingerprint : Fingerprint(
+    definingClass = MAX_UNITY_AD_MANAGER,
+    name = "createAdView",
+    parameters = listOf("Ljava/lang/String;", "Lcom/applovin/mediation/MaxAdFormat;", "Ljava/lang/String;", "Landroid/graphics/Point;", "Z"),
+)
+
 @Suppress("unused")
 val adBlockPatch =
     bytecodePatch(
-        name = "Disable Interstitial & App Open Ads",
-        description = "Bypasses interstitial ads and app-open ads by always returning false from readiness checks.",
+        name = "Disable Interstitial, App Open & Banner Ads",
+        description = "Bypasses interstitial, app-open and banner ads by intercepting readiness and show calls.",
     ) {
         compatibleWith(COMPATIBILITY_COLONY_FLOW)
 
@@ -41,6 +53,20 @@ val adBlockPatch =
                 """
                 const/4 v0, 0x0
                 return v0
+                """.trimIndent(),
+            )
+
+            ShowBannerFingerprint.method.addInstructions(
+                0,
+                """
+                return-void
+                """.trimIndent(),
+            )
+
+            CreateAdViewFingerprint.method.addInstructions(
+                0,
+                """
+                return-void
                 """.trimIndent(),
             )
         }
