@@ -29,38 +29,34 @@ val billingBypassPatch =
             LaunchBillingFlowFingerprint.method.addInstructions(
                 0,
                 """
-                const-string v0, ""
-                invoke-virtual {p2}, Lcom/android/billingclient/api/BillingFlowParams;->getProductDetailsParamsList()Ljava/util/List;
+                const-string v0, "com.abi.ant.coin1"
+                move-object/from16 v1, p2
+                if-eqz v1, :cond_default_id_set
+                invoke-virtual {v1}, Lcom/android/billingclient/api/BillingFlowParams;->zzk()Ljava/util/List;
                 move-result-object v1
-                if-eqz v1, :cond_extract_end
+                if-eqz v1, :cond_default_id_set
                 invoke-interface {v1}, Ljava/util/List;->isEmpty()Z
                 move-result v2
-                if-nez v2, :cond_extract_end
+                if-nez v2, :cond_default_id_set
                 const/4 v2, 0x0
                 invoke-interface {v1, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
                 move-result-object v1
                 check-cast v1, Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;
+                if-eqz v1, :cond_default_id_set
                 invoke-virtual {v1}, Lcom/android/billingclient/api/BillingFlowParams${'$'}ProductDetailsParams;->zza()Lcom/android/billingclient/api/ProductDetails;
                 move-result-object v1
-                if-eqz v1, :cond_extract_end
-                invoke-virtual {v1}, Lcom/android/billingclient/api/ProductDetails;->getProductId()Ljava/lang/String;
-                move-result-object v0
-
-                :cond_extract_end
-                invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-                move-result v1
                 if-eqz v1, :cond_default_id_set
-                const-string v0, "com.abi.ant.coin1"
+                invoke-virtual {v1}, Lcom/android/billingclient/api/ProductDetails;->getProductId()Ljava/lang/String;
+                move-result-object v1
+                if-eqz v1, :cond_default_id_set
+                move-object v0, v1
 
                 :cond_default_id_set
-                invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
-                move-result-wide v4
-
                 new-instance v1, Lorg/json/JSONObject;
                 invoke-direct {v1}, Lorg/json/JSONObject;-><init>()V
 
                 const-string v2, "orderId"
-                const-string v3, "GPA.0000-0000-0000-00000"
+                const-string v3, "GPA.1234-5678-9012-34567"
                 invoke-virtual {v1, v2, v3}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
                 const-string v2, "packageName"
@@ -71,7 +67,8 @@ val billingBypassPatch =
                 invoke-virtual {v1, v2, v0}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
                 const-string v2, "purchaseTime"
-                invoke-virtual {v1, v2, v4, v5}, Lorg/json/JSONObject;->put(Ljava/lang/String;J)Lorg/json/JSONObject;
+                const-wide v3, 0x18bd92bb400L
+                invoke-virtual {v1, v2, v3, v4}, Lorg/json/JSONObject;->put(Ljava/lang/String;J)Lorg/json/JSONObject;
 
                 const-string v2, "purchaseState"
                 const/4 v3, 0x1
@@ -97,7 +94,8 @@ val billingBypassPatch =
 
                 sget-object v1, Lcom/android/billingclient/api/zzdc;->zzi:Lcom/android/billingclient/api/BillingResult;
 
-                iget-object v2, p0, Lcom/android/billingclient/api/BillingClientImpl;->zzf:Lcom/android/billingclient/api/zzab;
+                move-object/from16 v2, p0
+                iget-object v2, v2, Lcom/android/billingclient/api/BillingClientImpl;->zzf:Lcom/android/billingclient/api/zzab;
                 if-eqz v2, :cond_listener_null
                 invoke-virtual {v2}, Lcom/android/billingclient/api/zzab;->zzf()Lcom/android/billingclient/api/PurchasesUpdatedListener;
                 move-result-object v2
