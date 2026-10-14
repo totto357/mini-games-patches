@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/totto357/mini-games-patches/compare/v1.1.1...v1.2.0) (2026-10-14)
+
+### ✨ New Features
+
+* **colonyflow:** add auto-restore save data from external storage on startup ([0fc73bc](https://github.com/totto357/mini-games-patches/commit/0fc73bc03aba673e3f3968368ff449e6cd83c9fb))
+
 ## [1.1.1](https://github.com/totto357/mini-games-patches/compare/v1.1.0...v1.1.1) (2026-10-14)
 
 ### 🐛 Bug Fixes

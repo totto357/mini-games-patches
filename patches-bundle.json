@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-14T07:24:09",
-  "description": "## [1.1.1](https://github.com/totto357/mini-games-patches/compare/v1.1.0...v1.1.1) (2026-10-14)\n\n### 🐛 Bug Fixes\n\n* **colonyflow:** fix register index out of range in billing bypass patch ([566e977](https://github.com/totto357/mini-games-patches/commit/566e9770972f6e64e8376159ee3f0be5707ef162))",
-  "download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.1.1/patches-1.1.1.mpp",
-  "signature_download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.1.1/patches-1.1.1.mpp.asc",
-  "version": "1.1.1"
+  "created_at": "2026-10-14T07:34:00",
+  "description": "## [1.2.0](https://github.com/totto357/mini-games-patches/compare/v1.1.1...v1.2.0) (2026-10-14)\n\n### ✨ New Features\n\n* **colonyflow:** add auto-restore save data from external storage on startup ([0fc73bc](https://github.com/totto357/mini-games-patches/commit/0fc73bc03aba673e3f3968368ff449e6cd83c9fb))",
+  "download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.2.0/patches-1.2.0.mpp",
+  "signature_download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.2.0/patches-1.2.0.mpp.asc",
+  "version": "1.2.0"
 }
