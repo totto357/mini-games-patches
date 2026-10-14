@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/totto357/mini-games-patches/compare/v1.0.3...v1.1.0) (2026-10-14)
+
+### ✨ New Features
+
+* **colonyflow:** completely disable banner and mrec view creation ([b4be7ae](https://github.com/totto357/mini-games-patches/commit/b4be7ae7f1622ea1be0a61815a6b0292f305fb10))
+
 ## [1.0.3](https://github.com/totto357/mini-games-patches/compare/v1.0.2...v1.0.3) (2026-10-14)
 
 ### 🐛 Bug Fixes
