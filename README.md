@@ -5,7 +5,7 @@ Morphe patches for various casual / mini games on Android.
 ## Patches
 
 <!-- PATCHES_START -->
-> **[v1.0.1](https://github.com/totto357/mini-games-patches/releases/tag/v1.0.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;5 patches total
+> **[v1.0.2](https://github.com/totto357/mini-games-patches/releases/tag/v1.0.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;5 patches total
 <details open>
 <summary>📦 Colony Flow&nbsp;&nbsp;•&nbsp;&nbsp;5 patches</summary>
 <br>

@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/totto357/mini-games-patches/compare/v1.0.1...v1.0.2) (2026-10-14)
+
+### 🐛 Bug Fixes
+
+* **colony-flow:** hook attachBaseContext directly instead of non-existent onCreate ([4cd5956](https://github.com/totto357/mini-games-patches/commit/4cd5956954955eab42a4878e7bb09ffb99331560))
+
 ## [1.0.1](https://github.com/totto357/mini-games-patches/compare/v1.0.0...v1.0.1) (2026-10-14)
 
 ### 🚀 Updated App Support
