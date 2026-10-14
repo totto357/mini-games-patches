@@ -12,8 +12,8 @@ Morphe patches for various casual / mini games on Android.
 
 **🎯 Supported versions:**
 
-| 1.0.76 |
-| :---: |
+| 1.0.76 | 1.0.78 |
+| :---: | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
