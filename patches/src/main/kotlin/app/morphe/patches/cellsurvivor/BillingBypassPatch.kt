@@ -3,15 +3,41 @@ package app.morphe.patches.cellsurvivor
 import app.morphe.patches.cellsurvivor.Constants.COMPATIBILITY_CELL_SURVIVOR
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 
 private const val GAME_HELPER = "Lcom/common/sdk/GameHelper;"
+private const val GAME_ACT_HELPER = "Lcom/common/game/GameActHelper;"
 private const val PAY_MANAGER_COM = "Lcom/common/pay/PayManagerCom;"
 
 internal object NewOrderInfoByGameStaticFingerprint : Fingerprint(
     definingClass = GAME_HELPER,
     name = "newOrderInfoByGameStatic",
     parameters = listOf("Ljava/lang/String;", "Ljava/lang/String;"),
+)
+
+internal object NewOrderInfoByStrongNetGameStaticFingerprint : Fingerprint(
+    definingClass = GAME_HELPER,
+    name = "newOrderInfoByStrongNetGameStatic",
+    parameters = listOf("Ljava/lang/String;", "Ljava/lang/String;"),
+)
+
+internal object GameActHelperNewOrderInfoFingerprint : Fingerprint(
+    definingClass = GAME_ACT_HELPER,
+    name = "newOrderInfoByGameStatic",
+    parameters = listOf("Ljava/lang/String;", "Ljava/lang/String;"),
+)
+
+internal object GameActHelperNewOrderInfoStrongNetFingerprint : Fingerprint(
+    definingClass = GAME_ACT_HELPER,
+    name = "newOrderInfoByStrongNetGameStatic",
+    parameters = listOf("Ljava/lang/String;", "Ljava/lang/String;"),
+)
+
+internal object NotifyGamePaySucceedFingerprint : Fingerprint(
+    definingClass = PAY_MANAGER_COM,
+    name = "notifyGamePaySucceed",
+    parameters = listOf("Ljava/lang/String;", "Lcom/common/pay/PayData;"),
 )
 
 internal object TrackPlatPayResultToServerFingerprint : Fingerprint(
@@ -38,6 +64,34 @@ internal object QueryUnFinishOrderFromServerFingerprint : Fingerprint(
     parameters = emptyList(),
 )
 
+private const val INSTANT_GRANT_SMALI = """
+    invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
+    move-result-object v0
+    invoke-virtual {v0}, Ljava/util/UUID;->toString()Ljava/lang/String;
+    move-result-object v0
+
+    new-instance v1, Lcom/common/pay/PayData;
+    invoke-direct {v1}, Lcom/common/pay/PayData;-><init>()V
+    iput-object p0, v1, Lcom/common/pay/PayData;->productId:Ljava/lang/String;
+    iput-object v0, v1, Lcom/common/pay/PayData;->orderNum:Ljava/lang/String;
+    const-string v2, "test_plat_order"
+    iput-object v2, v1, Lcom/common/pay/PayData;->pltOrderNum:Ljava/lang/String;
+    const/4 v2, 0x0
+    iput v2, v1, Lcom/common/pay/PayData;->status:I
+    const/4 v2, 0x1
+    iput v2, v1, Lcom/common/pay/PayData;->serverStatus:I
+    const-string v2, "test_order_sign"
+    iput-object v2, v1, Lcom/common/pay/PayData;->orderSign:Ljava/lang/String;
+
+    new-instance v2, Lcom/google/gson/Gson;
+    invoke-direct {v2}, Lcom/google/gson/Gson;-><init>()V
+    invoke-virtual {v2, v1}, Lcom/google/gson/Gson;->toJson(Ljava/lang/Object;)Ljava/lang/String;
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/common/game/UserGameHelper;->platSucceedCallback(Ljava/lang/String;Ljava/lang/String;)V
+    return-void
+"""
+
 @Suppress("unused")
 val billingBypassPatch =
     bytecodePatch(
@@ -47,86 +101,64 @@ val billingBypassPatch =
         compatibleWith(COMPATIBILITY_CELL_SURVIVOR)
 
         execute {
-            NewOrderInfoByGameStaticFingerprint.method.ensureLocals(7)
-            NewOrderInfoByGameStaticFingerprint.method.addInstructions(
-                0,
-                """
-                const/4 v0, 0x1
-                new-instance v1, Ljava/util/HashMap;
-                invoke-direct {v1}, Ljava/util/HashMap;-><init>()V
+            // Hook all order entry points to immediately grant item via UserGameHelper.platSucceedCallback
+            listOf(
+                NewOrderInfoByGameStaticFingerprint,
+                NewOrderInfoByStrongNetGameStaticFingerprint,
+                GameActHelperNewOrderInfoFingerprint,
+                GameActHelperNewOrderInfoStrongNetFingerprint,
+            ).forEach { fingerprint ->
+                fingerprint.method.apply {
+                    val count = implementation?.instructions?.size ?: 0
+                    if (count > 0) {
+                        removeInstructions(0, count)
+                    }
+                    ensureLocals(3)
+                    addInstructions(0, INSTANT_GRANT_SMALI.trimIndent())
+                }
+            }
 
-                const-string v2, "productId"
-                invoke-virtual {v1, v2, p0}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+            // Fallback for notifyGamePaySucceed
+            NotifyGamePaySucceedFingerprint.method.apply {
+                ensureLocals(1)
+                addInstructions(
+                    0,
+                    """
+                    if-nez p2, :cond_pay_not_null
+                    return-void
+                    :cond_pay_not_null
+                    new-instance v0, Lcom/google/gson/Gson;
+                    invoke-direct {v0}, Lcom/google/gson/Gson;-><init>()V
+                    invoke-virtual {v0, p2}, Lcom/google/gson/Gson;->toJson(Ljava/lang/Object;)Ljava/lang/String;
+                    move-result-object v0
+                    invoke-static {p1, v0}, Lcom/common/game/UserGameHelper;->platSucceedCallback(Ljava/lang/String;Ljava/lang/String;)V
+                    return-void
+                    """.trimIndent(),
+                )
+            }
 
-                const-string v2, "platOrderNo"
-                const-string v3, "test_plat_order"
-                invoke-virtual {v1, v2, v3}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+            TrackPlatPayResultToServerFingerprint.method.apply {
+                val count = implementation?.instructions?.size ?: 0
+                if (count > 0) removeInstructions(0, count)
+                addInstructions(0, "return-void")
+            }
 
-                invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
-                move-result-object v3
-                invoke-virtual {v3}, Ljava/util/UUID;->toString()Ljava/lang/String;
-                move-result-object v3
-                const-string v2, "payOrderNo"
-                invoke-virtual {v1, v2, v3}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+            AddUploadServerCacheFingerprint.method.apply {
+                val count = implementation?.instructions?.size ?: 0
+                if (count > 0) removeInstructions(0, count)
+                addInstructions(0, "return-void")
+            }
 
-                const-string v2, "orderSign"
-                const-string v3, "test_order_sign"
-                invoke-virtual {v1, v2, v3}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+            GetAllUnFinishOrderIDFingerprint.method.apply {
+                val count = implementation?.instructions?.size ?: 0
+                if (count > 0) removeInstructions(0, count)
+                addInstructions(0, "const-string v0, \"\"\nreturn-object v0")
+            }
 
-                const-string v2, "token"
-                const-string v3, "test_token"
-                invoke-virtual {v1, v2, v3}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-                const-string v2, "quantity"
-                const-string v3, "1"
-                invoke-virtual {v1, v2, v3}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-                const-string v2, "purchaseType"
-                const-string v3, "inapp"
-                invoke-virtual {v1, v2, v3}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-                const/4 v4, 0x0
-                invoke-static {}, Lcom/common/ad/PayManager;->getInstance()Lcom/common/ad/PayManager;
-                move-result-object v5
-                if-eqz v5, :cond_pay_end
-                iget-object v6, v5, Lcom/common/ad/PayManager;->payHelper:Lcom/common/ad/GooglePayUtil;
-                if-eqz v6, :cond_pay_end
-                iget-object v2, v6, Lcom/common/ad/GooglePayUtil;->mConsumeCallback:Lcom/common/ad/GooglePayCallback;
-                if-eqz v2, :cond_pay_end
-                invoke-interface {v2, v0, v1, v4}, Lcom/common/ad/GooglePayCallback;->doServerResult(ZLjava/util/Map;Ljava/lang/Runnable;)V
-                :cond_pay_end
-                return-void
-                """.trimIndent(),
-            )
-
-            TrackPlatPayResultToServerFingerprint.method.addInstructions(
-                0,
-                """
-                return-void
-                """.trimIndent(),
-            )
-
-            AddUploadServerCacheFingerprint.method.addInstructions(
-                0,
-                """
-                return-void
-                """.trimIndent(),
-            )
-
-            GetAllUnFinishOrderIDFingerprint.method.addInstructions(
-                0,
-                """
-                const-string v0, ""
-                return-object v0
-                """.trimIndent(),
-            )
-
-            QueryUnFinishOrderFromServerFingerprint.method.addInstructions(
-                0,
-                """
-                const/4 v0, 0x0
-                return v0
-                """.trimIndent(),
-            )
+            QueryUnFinishOrderFromServerFingerprint.method.apply {
+                val count = implementation?.instructions?.size ?: 0
+                if (count > 0) removeInstructions(0, count)
+                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+            }
         }
     }
