@@ -5,15 +5,15 @@ Morphe patches for various casual / mini games on Android.
 ## Patches
 
 <!-- PATCHES_START -->
-> **[v1.3.0](https://github.com/totto357/mini-games-patches/releases/tag/v1.3.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;14 patches total
+> **[v1.4.0](https://github.com/totto357/mini-games-patches/releases/tag/v1.4.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;14 patches total
 <details open>
 <summary>📦 Cell Survivor&nbsp;&nbsp;•&nbsp;&nbsp;9 patches</summary>
 <br>
 
 **🎯 Supported versions:**
 
-| 2.20 | 2.15 |
-| :---: | :---: |
+| 2.23 | 2.20 | 2.15 |
+| :---: | :---: | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|

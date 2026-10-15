@@ -1,3 +1,9 @@
+## [1.4.0](https://github.com/totto357/mini-games-patches/compare/v1.3.0...v1.4.0) (2026-10-15)
+
+### ✨ New Features
+
+* **cellsurvivor:** support v2.23 and improve patch robustness ([6790539](https://github.com/totto357/mini-games-patches/commit/6790539fdeaabbc5e77472ff7d596676932dbee3))
+
 ## [1.3.0](https://github.com/totto357/mini-games-patches/compare/v1.2.0...v1.3.0) (2026-10-14)
 
 ### ✨ New Features

@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "patches": [
     {
       "name": "Bypass Force Update",
@@ -16,6 +16,13 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
+            {
+              "version": "2.23",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
             {
               "version": "2.20",
               "versionCodes": null,
@@ -83,6 +90,13 @@
           "signatures": null,
           "targets": [
             {
+              "version": "2.23",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
               "version": "2.20",
               "versionCodes": null,
               "isExperimental": false,
@@ -115,6 +129,13 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
+            {
+              "version": "2.23",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
             {
               "version": "2.20",
               "versionCodes": null,
@@ -149,6 +170,13 @@
           "signatures": null,
           "targets": [
             {
+              "version": "2.23",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
               "version": "2.20",
               "versionCodes": null,
               "isExperimental": false,
@@ -181,6 +209,13 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
+            {
+              "version": "2.23",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
             {
               "version": "2.20",
               "versionCodes": null,
@@ -281,6 +316,13 @@
           "signatures": null,
           "targets": [
             {
+              "version": "2.23",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
               "version": "2.20",
               "versionCodes": null,
               "isExperimental": false,
@@ -313,6 +355,13 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
+            {
+              "version": "2.23",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
             {
               "version": "2.20",
               "versionCodes": null,
@@ -380,6 +429,13 @@
           "signatures": null,
           "targets": [
             {
+              "version": "2.23",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
               "version": "2.20",
               "versionCodes": null,
               "isExperimental": false,
@@ -445,6 +501,13 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
+            {
+              "version": "2.23",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
             {
               "version": "2.20",
               "versionCodes": null,
