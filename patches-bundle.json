@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-15T01:57:51",
-  "description": "## [1.4.1](https://github.com/totto357/mini-games-patches/compare/v1.4.0...v1.4.1) (2026-10-15)\n\n### 🐛 Bug Fixes\n\n* **cellsurvivor:** eliminate save restore race condition and implement json merge backup ([37bf4c4](https://github.com/totto357/mini-games-patches/commit/37bf4c48b5e9b22a23f00bccada9d5ea1bcd814b))",
-  "download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.4.1/patches-1.4.1.mpp",
-  "signature_download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.4.1/patches-1.4.1.mpp.asc",
-  "version": "1.4.1"
+  "created_at": "2026-10-15T02:42:28",
+  "description": "## [1.4.2](https://github.com/totto357/mini-games-patches/compare/v1.4.1...v1.4.2) (2026-10-15)\n\n### 🐛 Bug Fixes\n\n* **cellsurvivor:** bypass order verification and immediately grant purchases via platSucceedCallback ([a0c793e](https://github.com/totto357/mini-games-patches/commit/a0c793e406b810cbd3940c7e2061fb33edbcbb24))",
+  "download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.4.2/patches-1.4.2.mpp",
+  "signature_download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.4.2/patches-1.4.2.mpp.asc",
+  "version": "1.4.2"
 }

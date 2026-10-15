@@ -1,3 +1,9 @@
+## [1.4.2](https://github.com/totto357/mini-games-patches/compare/v1.4.1...v1.4.2) (2026-10-15)
+
+### 🐛 Bug Fixes
+
+* **cellsurvivor:** bypass order verification and immediately grant purchases via platSucceedCallback ([a0c793e](https://github.com/totto357/mini-games-patches/commit/a0c793e406b810cbd3940c7e2061fb33edbcbb24))
+
 ## [1.4.1](https://github.com/totto357/mini-games-patches/compare/v1.4.0...v1.4.1) (2026-10-15)
 
 ### 🐛 Bug Fixes
