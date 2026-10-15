@@ -17,7 +17,7 @@ internal object NewOrderInfoByGameStaticFingerprint : Fingerprint(
 internal object TrackPlatPayResultToServerFingerprint : Fingerprint(
     definingClass = PAY_MANAGER_COM,
     name = "trackPlatPayResultToServer",
-    parameters = listOf("Ljava/lang/String;"),
+    parameters = listOf("Ljava/lang/String;", "Ljava/lang/String;"),
 )
 
 internal object AddUploadServerCacheFingerprint : Fingerprint(
@@ -47,6 +47,7 @@ val billingBypassPatch =
         compatibleWith(COMPATIBILITY_CELL_SURVIVOR)
 
         execute {
+            NewOrderInfoByGameStaticFingerprint.method.ensureLocals(7)
             NewOrderInfoByGameStaticFingerprint.method.addInstructions(
                 0,
                 """

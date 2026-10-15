@@ -3,6 +3,7 @@ package app.morphe.patches.cellsurvivor
 import app.morphe.patches.cellsurvivor.Constants.COMPATIBILITY_CELL_SURVIVOR
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 
 private const val GAME_ACT_HELPER = "Lcom/common/game/GameActHelper;"
@@ -29,6 +30,7 @@ val saveDataPatch =
         compatibleWith(COMPATIBILITY_CELL_SURVIVOR)
 
         execute {
+            UploadCloudArchiveBatchFingerprint.method.ensureLocals(3)
             UploadCloudArchiveBatchFingerprint.method.addInstructions(
                 0,
                 """
@@ -61,8 +63,14 @@ val saveDataPatch =
                 """.trimIndent(),
             )
 
-            PullCloudArchiveBatchCallbackFingerprint.method.addInstructions(
-                0,
+            PullCloudArchiveBatchCallbackFingerprint.method.apply {
+                val count = implementation?.instructions?.size ?: 0
+                if (count > 0) {
+                    removeInstructions(0, count)
+                }
+                ensureLocals(3)
+                addInstructions(
+                    0,
                 """
                 :try_start_load
                 if-eqz p4, :cond_do_load
@@ -72,7 +80,8 @@ val saveDataPatch =
                 const-string v0, "{}"
                 invoke-virtual {v0, p4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
                 move-result v0
-                if-eqz v0, :cond_load_end
+                if-nez v0, :cond_do_load
+                goto :cond_call_callback
 
                 :cond_do_load
                 new-instance v0, Ljava/io/File;
@@ -80,7 +89,7 @@ val saveDataPatch =
                 invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
                 invoke-virtual {v0}, Ljava/io/File;->exists()Z
                 move-result v1
-                if-eqz v1, :cond_load_end
+                if-eqz v1, :cond_empty_data
 
                 invoke-virtual {v0}, Ljava/io/File;->length()J
                 move-result-wide v1
@@ -95,11 +104,21 @@ val saveDataPatch =
                 new-instance p4, Ljava/lang/String;
                 invoke-direct {p4, v1}, Ljava/lang/String;-><init>([B)V
                 const/4 p1, 0x1
+                const-string p2, "get cloud archive success"
+                goto :cond_call_callback
+
+                :cond_empty_data
+                const-string p4, "{}"
                 :try_end_load
                 .catchall {:try_start_load .. :try_end_load} :catch_load
+
                 :catch_load
-                :cond_load_end
+                :cond_call_callback
+                iget-object v0, p0, Lcom/common/game/GameActHelper${'$'}67;->val${'$'}mark:Ljava/lang/String;
+                invoke-static {p1, p2, p3, p4, v0}, Lcom/common/game/UserGameHelper;->pullCloudArchiveBatchCallback(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+                return-void
                 """.trimIndent(),
             )
         }
     }
+}

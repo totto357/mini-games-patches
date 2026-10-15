@@ -64,6 +64,7 @@ val rewardedAdPatch =
                 """.trimIndent(),
             )
 
+            ShowVideoFingerprint.method.ensureLocals(2)
             ShowVideoFingerprint.method.addInstructions(
                 0,
                 """

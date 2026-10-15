@@ -22,7 +22,7 @@ val pairIPBypassPatch =
         compatibleWith(COMPATIBILITY_CELL_SURVIVOR)
 
         execute {
-            LicenseClientCheckLicenseFingerprint.method.addInstructions(
+            LicenseClientCheckLicenseFingerprint.methodOrNull?.addInstructions(
                 0,
                 """
                 return-void
