@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-15T01:02:29",
-  "description": "## [1.4.0](https://github.com/totto357/mini-games-patches/compare/v1.3.0...v1.4.0) (2026-10-15)\n\n### ✨ New Features\n\n* **cellsurvivor:** support v2.23 and improve patch robustness ([6790539](https://github.com/totto357/mini-games-patches/commit/6790539fdeaabbc5e77472ff7d596676932dbee3))",
-  "download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.4.0/patches-1.4.0.mpp",
-  "signature_download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.4.0/patches-1.4.0.mpp.asc",
-  "version": "1.4.0"
+  "created_at": "2026-10-15T01:57:51",
+  "description": "## [1.4.1](https://github.com/totto357/mini-games-patches/compare/v1.4.0...v1.4.1) (2026-10-15)\n\n### 🐛 Bug Fixes\n\n* **cellsurvivor:** eliminate save restore race condition and implement json merge backup ([37bf4c4](https://github.com/totto357/mini-games-patches/commit/37bf4c48b5e9b22a23f00bccada9d5ea1bcd814b))",
+  "download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.4.1/patches-1.4.1.mpp",
+  "signature_download_url": "https://github.com/totto357/mini-games-patches/releases/download/v1.4.1/patches-1.4.1.mpp.asc",
+  "version": "1.4.1"
 }
